@@ -1,7 +1,9 @@
 package coverage
+// package main
 
 import (
 	"os"
+	"testing"
 )
 
 // DO NOT EDIT THIS FUNCTION
@@ -17,4 +19,26 @@ func init() {
 }
 
 // WRITE YOUR CODE BELOW
+func TestSwapOK(t *testing.T) {
+	var People1 People
+	People1 = append(People1, Person {firstName : "santhosh", lastName:"kumar"})
+	People1 = append(People1, Person {firstName : "santhosh1", lastName:"kumar1"})
+	People1.Swap(0, 1)
+	// r, error := People1.Len()
+	//People1.Len()
+	// if (error != nil) {
+	// 	t.Errorf("swap failed")
+	// }
+}
 
+func TestLessOK(t *testing.T) {
+	var People1 People
+	People1 = append(People1, Person {firstName : "santhosh", lastName:"kumar"})
+	People1 = append(People1, Person {firstName : "santhosh1", lastName:"kumar1"})
+	People1.Swap(0, 1)
+	// r, error := People1.Len()
+	//People1.Len()
+	// if (error != nil) {
+	// 	t.Errorf("swap failed")
+	// }
+}
