@@ -4,7 +4,6 @@ package coverage
 import (
 	"os"
 	"testing"
-	"fmt"
 )
 
 // DO NOT EDIT THIS FUNCTION
@@ -56,25 +55,25 @@ func TestLenOK(t *testing.T) {
 	// }
 }
 
-func TestMatrixNew(t *testing.T) {
-	myMatrix, err := New("1 2 3 \n 4 5 6 \n 7 8 9")
+// func TestMatrixNew(t *testing.T) {
+// 	myMatrix, err := New("1 2 3 \n 4 5 6 \n 7 8 9")
 
-	expectedError := ""
+// 	expectedError := ""
 
-	if err.Error() != expectedError {
-		t.Errorf("Expect error to be '%s', but got '%s'", expectedError, err.Error())
-	}
+// 	if err.Error() != expectedError {
+// 		t.Errorf("Expect error to be '%s', but got '%s'", expectedError, err.Error())
+// 	}
 
-	fmt.Println(myMatrix)
-}
+// 	fmt.Println(myMatrix)
+// }
 
 
-func TestMatrixNew2(t *testing.T) {
-	myMatrix, err := New("1 2 3 \n 4 5 ")
-	expectedError := "Rows need to be the same length"
+// func TestMatrixNew2(t *testing.T) {
+// 	myMatrix, err := New("1 2 3 \n 4 5 ")
+// 	expectedError := "Rows need to be the same length"
 
-	if err.Error() != expectedError {
-		t.Errorf("Expect error to be '%s', but got '%s'", expectedError, err.Error())
-	}
-	fmt.Println(myMatrix)
-}
+// 	if err.Error() != expectedError {
+// 		t.Errorf("Expect error to be '%s', but got '%s'", expectedError, err.Error())
+// 	}
+// 	fmt.Println(myMatrix)
+// }
