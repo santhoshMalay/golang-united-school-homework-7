@@ -79,23 +79,39 @@ func TestLenOK(t *testing.T) {
 }
 
 
-// func TestMatrixNew(t *testing.T) {
-// 	myMatrix, err := New("1 2 3 \n 4 5 6 \n 7 8 9")
-// 	expectedError := ""
+func TestMatrixNew(t *testing.T) {
+	var myMatrix *Matrix
+	myMatrix, err := New("1 2 3 \n 4 5 6 \n 7 8 9")
+	if err != nil {
+		t.Errorf("No error Expected, but got '%s'", err.Error())
+	} else {
+		result := myMatrix.Set(4,4, 10)
+		if (result != false) {
+			t.Errorf("Expected: %v, got %v", false , true)
+		}
 
-// 	if err.Error() != expectedError {
-// 		t.Errorf("Expected error to be '%s', but got '%s'", expectedError, err.Error())
-// 	}
-// 	fmt.Println(myMatrix)
-// }
+		result2 := myMatrix.Set(2,2, 10)
+		if (result2 != true) {
+			t.Errorf("Expected: %v, got %v", true, false)
+		}
+
+		matrixColumns := myMatrix.Cols()
+		if (len(matrixColumns) == 0) {
+			t.Errorf("Expected non zero, got zero colums")
+		}
+
+		matrixRows := myMatrix.Rows()
+		if (len(matrixRows) == 0) {
+			t.Errorf("Expected non zero, got zero colums")
+		}
+	}
+}
 
 
-// func TestMatrixNew2(t *testing.T) {
-// 	myMatrix, err := New("1 2 3 \n 4 5 ")
-// 	expectedError := "Rows need to be the same length"
-
-// 	if err.Error() != expectedError {
-// 		t.Errorf("Expect error to be '%s', but got '%s'", expectedError, err.Error())
-// 	}
-// 	fmt.Println(myMatrix)
-// }
+func TestMatrixRows(t *testing.T) {
+	_ , err := New("1 2 3 \n 4 5 ")
+	expectedError := "Rows need to be the same length"
+	if err.Error() != expectedError {
+		t.Errorf("Expect error to be '%s', but got '%s'", expectedError, err.Error())
+	}
+}
