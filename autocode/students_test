@@ -4,6 +4,7 @@ package coverage
 import (
 	"os"
 	"testing"
+	"time"
 )
 
 // DO NOT EDIT THIS FUNCTION
@@ -23,47 +24,68 @@ func TestSwapOK(t *testing.T) {
 	var People1 People
 	People1 = append(People1, Person {firstName : "santhosh", lastName:"kumar"})
 	People1 = append(People1, Person {firstName : "santhosh1", lastName:"kumar1"})
+	
+	beforeSwap := People1[0].firstName
 	People1.Swap(0, 1)
-	// r, error := People1.Len()
-	//People1.Len()
-	// if (error != nil) {
-	// 	t.Errorf("swap failed")
-	// }
+
+	if People1[1].firstName != beforeSwap {
+		t.Errorf("Swap not working as expected expected %s, got %s", beforeSwap, People1[1].firstName)
+	}
 }
 
-func TestLessOK(t *testing.T) {
+func TestLessFirstNameOK(t *testing.T) {
 	var People1 People
-	People1 = append(People1, Person {firstName : "santhosh", lastName:"kumar"})
-	People1 = append(People1, Person {firstName : "santhosh1", lastName:"kumar1"})
-	People1.Swap(0, 1)
-	// r, error := People1.Len()
-	//People1.Len()
-	// if (error != nil) {
-	// 	t.Errorf("swap failed")
-	// }
+	People1 = append(People1, Person {firstName : "EPAM", lastName:"India"})
+	People1 = append(People1, Person {firstName : "Santhosh1", lastName:"kumar1"})
+	res := People1.Less(0, 1)
+
+	if(res != true) {
+		t.Errorf("Expected: %v, got %v", true , false)
+	}
+}
+
+func TestLessSecondNameOK(t *testing.T) {
+	var People1 People
+	People1 = append(People1, Person {firstName : "EPAM", lastName:"India"})
+	People1 = append(People1, Person {firstName : "EPAM", lastName:"UKR"})
+	res := People1.Less(0, 1)
+
+	if(res != true) {
+		t.Errorf("Expected: %v, got %v", true , false)
+	}
+}
+
+func TestLessDayOK(t *testing.T) {
+	var People1 People
+	People1 = append(People1, Person {firstName : "EPAM", lastName:"India", birthDay: time.Date(2015, time.January, 11, 00, 0, 0, 0, time.UTC) })
+	People1 = append(People1, Person {firstName : "EPAM", lastName:"India", birthDay: time.Date(2005, time.January, 11, 00, 0, 0, 0, time.UTC)})  
+	res := People1.Less(0, 1)
+
+	if(res != true) {
+		t.Errorf("Expected: %v, got %v", true , false)
+	}
 }
 
 func TestLenOK(t *testing.T) {
 	var People1 People
+	var expectedlen int = 2
 	People1 = append(People1, Person {firstName : "santhosh", lastName:"kumar"})
 	People1 = append(People1, Person {firstName : "santhosh1", lastName:"kumar1"})
-	People1.Len()
-	// r, error := People1.Len()
-	//People1.Len()
-	// if (error != nil) {
-	// 	t.Errorf("swap failed")
-	// }
+	retLen := People1.Len()
+
+	if(retLen != expectedlen) {
+		t.Errorf("Expected: %d, got %d", expectedlen, retLen)
+	}
 }
+
 
 // func TestMatrixNew(t *testing.T) {
 // 	myMatrix, err := New("1 2 3 \n 4 5 6 \n 7 8 9")
-
 // 	expectedError := ""
 
 // 	if err.Error() != expectedError {
-// 		t.Errorf("Expect error to be '%s', but got '%s'", expectedError, err.Error())
+// 		t.Errorf("Expected error to be '%s', but got '%s'", expectedError, err.Error())
 // 	}
-
 // 	fmt.Println(myMatrix)
 // }
 
